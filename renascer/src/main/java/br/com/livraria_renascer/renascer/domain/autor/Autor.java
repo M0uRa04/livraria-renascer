@@ -20,4 +20,9 @@ public class Autor {
 
     @NotBlank
     private String biografia;
+
+    public Autor (DadosCadastroAutor dados) {
+        this.nome = dados.nome();
+        this.biografia = dados.biografia();
+    }
 }
