@@ -9,5 +9,8 @@ public record DadosAtualizacaoAutor(
 
         String nome,
 
-        String biografia
+        String biografia,
+
+        boolean ativo
 ){}
+

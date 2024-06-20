@@ -21,4 +21,8 @@ public class AutorService {
         repository.save(autorRecuperado);
         return autorRecuperado;
     }
+
+    public void inativa(Autor autor) {
+        autor.setAtivo(false);
+    }
 }

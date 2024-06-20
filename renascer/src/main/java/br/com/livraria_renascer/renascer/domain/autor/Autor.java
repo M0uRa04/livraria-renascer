@@ -2,6 +2,7 @@ package br.com.livraria_renascer.renascer.domain.autor;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -21,9 +22,15 @@ public class Autor {
     @NotBlank
     private String biografia;
 
-    public Autor (){};
+    @NotNull
+    private boolean ativo;
+
+    public Autor (){
+        ativo = true;
+    };
 
     public Autor (DadosCadastroAutor dados) {
+        ativo = true;
         this.nome = dados.nome();
         this.biografia = dados.biografia();
     }
