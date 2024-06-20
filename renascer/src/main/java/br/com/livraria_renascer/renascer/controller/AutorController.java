@@ -34,11 +34,8 @@ public class AutorController {
     @PatchMapping
     @Transactional
     public ResponseEntity atualizaAutor (@Valid @RequestBody DadosAtualizacaoAutor dados) {
-        System.out.println("Entrei no método do controller");
         var autor = service.atualiza(dados);
-        System.out.println("Executei o método do service");
         return ResponseEntity.ok(autor);
-
     }
 
 
