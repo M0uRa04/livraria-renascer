@@ -21,6 +21,8 @@ public class Autor {
     @NotBlank
     private String biografia;
 
+    public Autor (){};
+
     public Autor (DadosCadastroAutor dados) {
         this.nome = dados.nome();
         this.biografia = dados.biografia();

@@ -1,8 +1,7 @@
 package br.com.livraria_renascer.renascer.controller;
 
-import br.com.livraria_renascer.renascer.domain.autor.Autor;
-import br.com.livraria_renascer.renascer.domain.autor.AutorRepository;
-import br.com.livraria_renascer.renascer.domain.autor.DadosCadastroAutor;
+import br.com.livraria_renascer.renascer.domain.autor.*;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +15,13 @@ public class AutorController {
     @Autowired
     private AutorRepository repository;
 
+    @Autowired
+    private AutorService service;
+
     @GetMapping
     public ResponseEntity listaAutores () {
-        return ResponseEntity.ok().build();
+        var listaDeAutores = repository.findAll();
+        return ResponseEntity.ok().body(listaDeAutores);
     }
 
     @PostMapping
@@ -26,6 +29,16 @@ public class AutorController {
         var uri = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUri();
         repository.save(new Autor(dados));
         return ResponseEntity.created(uri).body(dados);
+    }
+
+    @PatchMapping
+    @Transactional
+    public ResponseEntity atualizaAutor (@Valid @RequestBody DadosAtualizacaoAutor dados) {
+        System.out.println("Entrei no método do controller");
+        var autor = service.atualiza(dados);
+        System.out.println("Executei o método do service");
+        return ResponseEntity.ok(autor);
+
     }
 
 
