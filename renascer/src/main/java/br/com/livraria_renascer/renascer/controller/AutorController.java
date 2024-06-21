@@ -40,11 +40,17 @@ public class AutorController {
 
     @DeleteMapping ("/{id}")
     @Transactional
-    public ResponseEntity atualizaAutor (@PathVariable Long id) {
+    public ResponseEntity inativaAutor (@PathVariable Long id) {
         var autor = repository.getReferenceById(id);
         service.inativa(autor);
         repository.save(autor);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping ("/{id}")
+    public ResponseEntity buscaAutorPorId (@PathVariable Long id) {
+        var autor = repository.findById(id);
+        return ResponseEntity.ok().body(autor);
     }
 
 
