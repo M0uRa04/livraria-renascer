@@ -1,13 +1,17 @@
-package br.com.livraria_renascer.renascer.domain.livro;
+package br.com.livraria_renascer.renascer.domain.categoria;
 
+import br.com.livraria_renascer.renascer.domain.livro.Livro;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Table(name = "categoria")
 @Data
+@NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Categoria {
 
@@ -15,12 +19,11 @@ public class Categoria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
     private String nome;
 
-    @NotBlank
     private String descricao;
 
-    @OneToMany
-    private Livro livro;
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Livro> livros;
+
 }

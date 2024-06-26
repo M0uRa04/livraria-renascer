@@ -1,12 +1,12 @@
-package br.com.livraria_renascer.renascer.domain.autor;
+package br.com.livraria_renascer.renascer.domain.categoria;
 
 import jakarta.validation.constraints.NotBlank;
 
-public record DadosCadastroAutor(
+public record DadosCadastroCategoria(
 
         @NotBlank
         String nome,
 
         @NotBlank
-        String biografia
+        String descricao
 ){}

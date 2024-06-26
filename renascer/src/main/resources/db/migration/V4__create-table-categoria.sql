@@ -6,5 +6,5 @@ CREATE TABLE categoria (
 
     descricao varchar (1000) not null,
 
-    primary key (id),
+    primary key (id)
 );
