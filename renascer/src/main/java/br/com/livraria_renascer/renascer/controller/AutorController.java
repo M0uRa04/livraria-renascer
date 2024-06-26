@@ -50,8 +50,12 @@ public class AutorController {
     @GetMapping ("/{id}")
     public ResponseEntity buscaAutorPorId (@PathVariable Long id) {
         var autor = repository.findById(id);
-        return ResponseEntity.ok().body(autor);
-    }
+        if(autor.isPresent()) {
+            return ResponseEntity.ok().body(autor);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
 
+    }
 
 }
