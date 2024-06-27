@@ -1,6 +1,7 @@
 package br.com.livraria_renascer.renascer.domain.autor;
 
 import br.com.livraria_renascer.renascer.domain.livro.Livro;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -29,9 +30,11 @@ public class Autor {
     @NotNull
     private boolean ativo;
 
+
     @OneToMany(mappedBy = "autor",fetch = FetchType.LAZY)
     private List<Livro> livros;
 
+    @JsonIgnore
     @Transient
     private List<String> listaDeTitulosDeLivros;
 

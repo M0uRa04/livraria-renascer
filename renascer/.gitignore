@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+#Scrip para rodar no H2
+renascer/src/main/resources/data.sql

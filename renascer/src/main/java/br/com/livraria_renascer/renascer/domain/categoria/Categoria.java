@@ -1,6 +1,7 @@
 package br.com.livraria_renascer.renascer.domain.categoria;
 
 import br.com.livraria_renascer.renascer.domain.livro.Livro;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -24,6 +25,7 @@ public class Categoria {
 
     private String descricao;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY)
     private List<Livro> livros = new ArrayList<>();
 
