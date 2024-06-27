@@ -8,8 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.util.stream.Collectors;
-
 @RestController
 @RequestMapping("/autor")
 public class AutorController {
@@ -23,10 +21,7 @@ public class AutorController {
     @GetMapping
     public ResponseEntity listaAutores () {
         var listaDeAutores = repository.findAll();
-        var listaRespostaAutores = listaDeAutores.stream()
-                .map(a -> new DadosRespostaAutor(a))
-                .collect(Collectors.toList());
-        return ResponseEntity.ok().body(listaRespostaAutores);
+        return ResponseEntity.ok().body(listaDeAutores);
     }
 
     @PostMapping

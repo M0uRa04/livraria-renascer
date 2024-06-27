@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "autor")
@@ -25,12 +26,14 @@ public class Autor {
     @NotBlank
     private String biografia;
 
-
     @NotNull
     private boolean ativo;
 
     @OneToMany(mappedBy = "autor",fetch = FetchType.LAZY)
     private List<Livro> livros;
+
+    @Transient
+    private List<String> listaDeTitulosDeLivros;
 
     public Autor (){
         ativo = true;
@@ -40,5 +43,23 @@ public class Autor {
         ativo = true;
         this.nome = dados.nome();
         this.biografia = dados.biografia();
+    }
+
+    public List<String> getLivros() {
+        listaDeTitulosDeLivros = livros.stream()
+                .map(Livro::getTitulo)
+                .sorted()
+                .collect(Collectors.toList());
+        return listaDeTitulosDeLivros;
+    }
+
+    @Override
+    public String toString() {
+        return "Autor{" +
+                "nome='" + nome + '\'' +
+                ", biografia='" + biografia + '\'' +
+                ", ativo=" + ativo +
+                ", livros=" + listaDeTitulosDeLivros +
+                '}';
     }
 }
