@@ -27,13 +27,50 @@ public class Livro {
 
     private LocalDate dataPublicacao;
 
+    @Column(name = "estoque")
     private Integer qtdEmEstoque;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "categotia_id")
+    @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "autor_id")
     private Autor autor;
+
+    public Livro (DadosCadastroLivro dados, Autor autor, Categoria categoria) {
+        this.titulo = dados.titulo();
+        this.preco = dados.preco();
+        this.dataPublicacao = dados.dataPublicacao();
+        this.qtdEmEstoque = dados.qtdEmEstoque();
+        this.autor = autor;
+        this.categoria = categoria;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Livro {\n");
+        sb.append("    Título: '").append(titulo).append("'\n");
+        sb.append("    Preço: ").append(preco).append("\n");
+        sb.append("    Data de Publicação: ").append(dataPublicacao).append("\n");
+        sb.append("    Quantidade em Estoque: ").append(qtdEmEstoque).append("\n");
+
+        if (autor != null) {
+            sb.append("    Autor: ").append(autor.getNome()).append("\n");
+        } else {
+            sb.append("    Autor: não especificado\n");
+        }
+
+        if (categoria != null) {
+            sb.append("    Categoria: ").append(categoria.getNome()).append("\n");
+            sb.append("    Descrição da Categoria: ").append(categoria.getDescricao()).append("\n");
+        } else {
+            sb.append("    Categoria: não especificada\n");
+        }
+
+        sb.append("}");
+        return sb.toString();
+    }
+
 }

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,7 +24,13 @@ public class Categoria {
 
     private String descricao;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<Livro> livros;
+    @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY)
+    private List<Livro> livros = new ArrayList<>();
+
+
+    public void adicionarLivro(Livro livro) {
+        livros.add(livro);
+        livro.setCategoria(this);
+    }
 
 }

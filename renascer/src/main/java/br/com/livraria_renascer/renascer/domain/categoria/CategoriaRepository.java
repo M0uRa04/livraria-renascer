@@ -1,8 +1,7 @@
-package br.com.livraria_renascer.renascer.domain.livro;
+package br.com.livraria_renascer.renascer.domain.categoria;
 
-import br.com.livraria_renascer.renascer.domain.autor.Autor;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
-public interface LivroRepository extends JpaRepository <Autor, Long> {
+public interface CategoriaRepository extends JpaRepository <Categoria, Long> {
 }

@@ -1,12 +1,30 @@
-package br.com.livraria_renascer.renascer.domain.categoria;
+package br.com.livraria_renascer.renascer.domain.livro;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
 
-public record DadosCadastroCategoria(
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
-        @NotBlank
-        String nome,
+public record DadosCadastroLivro(
 
-        @NotBlank
-        String descricao
+                @NotBlank
+                String titulo,
+
+                @NotNull
+                BigDecimal preco,
+
+                @NotNull
+                @PastOrPresent
+                LocalDate dataPublicacao,
+
+                @NotNull
+                Integer qtdEmEstoque,
+
+                @NotNull
+                Long id_autor,
+
+                @NotNull
+                Long id_categoria
 ){}
