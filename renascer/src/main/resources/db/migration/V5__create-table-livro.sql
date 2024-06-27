@@ -2,7 +2,7 @@ CREATE TABLE livro (
 
     id bigint unique not null auto_increment,
 
-    titulo varchar (50) not null,
+    titulo varchar (50) not null unique,
 
     preco decimal(10, 2) not null,
 

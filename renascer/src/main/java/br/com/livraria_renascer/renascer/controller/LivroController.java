@@ -2,6 +2,7 @@ package br.com.livraria_renascer.renascer.controller;
 
 import br.com.livraria_renascer.renascer.domain.livro.DadosAtualizacaoLivro;
 import br.com.livraria_renascer.renascer.domain.livro.DadosCadastroLivro;
+import br.com.livraria_renascer.renascer.domain.livro.LivroRepository;
 import br.com.livraria_renascer.renascer.domain.livro.LivroService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -16,6 +17,9 @@ public class LivroController {
 
     @Autowired
     private LivroService service;
+
+    @Autowired
+    private LivroRepository repository;
 
     @GetMapping
     public ResponseEntity listaLivros () {
@@ -46,15 +50,15 @@ public class LivroController {
 //        return ResponseEntity.noContent().build();
 //    }
 //
-//    @GetMapping ("/{id}")
-//    public ResponseEntity buscaAutorPorId (@PathVariable Long id) {
-//        var autor = repository.findById(id);
-//        if(autor.isPresent()) {
-//            return ResponseEntity.ok().body(autor);
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
-//
-//    }
+    @GetMapping ("/{id}")
+    public ResponseEntity buscaLivroPorId (@PathVariable Long id) {
+        var livro = repository.findById(id);
+        if(livro.isPresent()) {
+            return ResponseEntity.ok().body(livro);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+
+    }
 
 }
