@@ -1,7 +1,9 @@
 package br.com.livraria_renascer.renascer.controller;
 
+import br.com.livraria_renascer.renascer.domain.livro.DadosAtualizacaoLivro;
 import br.com.livraria_renascer.renascer.domain.livro.DadosCadastroLivro;
 import br.com.livraria_renascer.renascer.domain.livro.LivroService;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,16 +26,16 @@ public class LivroController {
     @PostMapping
     public ResponseEntity CadastraLivros (@Valid @RequestBody DadosCadastroLivro dados) {
         var uri = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUri();
-        service.cadastrar(dados);
-        return ResponseEntity.created(uri).body(dados);
+        var livroCadastrado = service.cadastrar(dados);
+        return ResponseEntity.created(uri).body(livroCadastrado);
     }
 
-//    @PatchMapping
-//    @Transactional
-//    public ResponseEntity atualizaAutor (@Valid @RequestBody DadosAtualizacaoAutor dados) {
-//        var autor = service.atualiza(dados);
-//        return ResponseEntity.ok(autor);
-//    }
+    @PatchMapping
+    @Transactional
+    public ResponseEntity atualizaLivro (@Valid @RequestBody DadosAtualizacaoLivro dados) {
+        var livro = service.atualiza(dados);
+        return ResponseEntity.ok(livro);
+    }
 //
 //    @DeleteMapping ("/{id}")
 //    @Transactional

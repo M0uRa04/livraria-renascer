@@ -31,14 +31,32 @@ public class LivroService {
     }
 
     public List<Livro> listaLivros () {
-        var listaDeLivros = livroRepository.findAll();
-        return listaDeLivros;
+        return livroRepository.findAll();
     }
 
-    public void cadastrar(DadosCadastroLivro dados) {
+    public Livro cadastrar(DadosCadastroLivro dados) {
         var autor = buscaAutor(dados.id_autor());
         var categoria = buscaCategoria(dados.id_categoria());
         Livro livro = new Livro(dados, autor, categoria);
         livroRepository.save(livro);
+        return livro;
+    }
+
+    public Livro atualiza(DadosAtualizacaoLivro dados) {
+        var livroRecuperado = livroRepository.findById(dados.id()).orElseThrow(() -> new RuntimeException("Livro não encontrado para o Id Fornecido"));
+
+        if (!dados.titulo().isBlank()) {
+            livroRecuperado.setTitulo(dados.titulo());
+        }
+        if (!(dados.preco() == null)) {
+            livroRecuperado.setPreco(dados.preco());
+        }
+        if (!(dados.dataPublicacao() == null)) {
+            livroRecuperado.setDataPublicacao(dados.dataPublicacao());
+        }
+        if (!(dados.qtdEmEstoque() == null)) {
+            livroRecuperado.setQtdEmEstoque(dados.qtdEmEstoque());
+        }
+        return livroRepository.save(livroRecuperado);
     }
 }
