@@ -1,4 +1,4 @@
-package br.com.livraria_renascer.renascer.domain;
+package br.com.livraria_renascer.renascer.domain.usuario;
 
 
 import jakarta.persistence.*;

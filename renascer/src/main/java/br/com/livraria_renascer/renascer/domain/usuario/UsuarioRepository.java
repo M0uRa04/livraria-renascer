@@ -1,4 +1,4 @@
-package med.voll.api.domain.usuario;
+package br.com.livraria_renascer.renascer.domain.usuario;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;
