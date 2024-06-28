@@ -29,9 +29,13 @@ public class LivroController {
 
     @PostMapping
     public ResponseEntity CadastraLivros (@Valid @RequestBody DadosCadastroLivro dados) {
-        var uri = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUri();
-        var livroCadastrado = service.cadastrar(dados);
-        return ResponseEntity.created(uri).body(livroCadastrado);
+        try {
+            var uri = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUri();
+            var livroCadastrado = service.cadastrar(dados);
+            return ResponseEntity.created(uri).body(livroCadastrado);
+        } catch (RuntimeException ex) {
+            return ResponseEntity.badRequest().body(ex.getMessage());
+        }
     }
 
     @PatchMapping

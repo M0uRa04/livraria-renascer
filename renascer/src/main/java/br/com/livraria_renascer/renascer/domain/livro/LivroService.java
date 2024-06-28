@@ -4,6 +4,7 @@ import br.com.livraria_renascer.renascer.domain.autor.Autor;
 import br.com.livraria_renascer.renascer.domain.autor.AutorRepository;
 import br.com.livraria_renascer.renascer.domain.categoria.Categoria;
 import br.com.livraria_renascer.renascer.domain.categoria.CategoriaRepository;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,9 @@ public class LivroService {
     public Livro cadastrar(DadosCadastroLivro dados) {
         var autor = buscaAutor(dados.id_autor());
         var categoria = buscaCategoria(dados.id_categoria());
+        if (!categoria.isAtivo() || !autor.isAtivo()) {
+            throw new EntityExistsException("Autor ou categoria inexistente, por favor selecione outros disponíveis.");
+        }
         Livro livro = new Livro(dados, autor, categoria);
         livroRepository.save(livro);
         return livro;
