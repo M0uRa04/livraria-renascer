@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,9 +12,9 @@ import java.util.List;
 @Entity
 @Table(name = "categoria")
 @Data
-@NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Categoria {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +27,12 @@ public class Categoria {
     @JsonIgnore
     @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY)
     private List<Livro> livros = new ArrayList<>();
+
+    private boolean ativo;
+
+    public Categoria (){
+        this.ativo = true;
+    };
 
 
     public void adicionarLivro(Livro livro) {

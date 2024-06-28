@@ -6,5 +6,7 @@ CREATE TABLE categoria (
 
     descricao varchar (1000) not null,
 
+    ativo boolean not null,
+
     primary key (id)
 );
