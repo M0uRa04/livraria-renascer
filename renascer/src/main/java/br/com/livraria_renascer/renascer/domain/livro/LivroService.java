@@ -59,4 +59,8 @@ public class LivroService {
         }
         return livroRepository.save(livroRecuperado);
     }
+
+    public void inativa(Livro livro) {
+        livro.setAtivo(false);
+    }
 }

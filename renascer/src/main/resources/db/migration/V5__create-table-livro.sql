@@ -16,6 +16,8 @@ CREATE TABLE livro (
 
     autor_id bigint not null,
 
+    ativo boolean not null,
+
     constraint fk_livro_categoria_id foreign key(categoria_id) references categoria(id),
     constraint fk_livro_autor_id foreign key(autor_id) references autor(id)
 

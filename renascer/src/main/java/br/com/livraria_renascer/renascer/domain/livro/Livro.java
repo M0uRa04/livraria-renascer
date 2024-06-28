@@ -39,6 +39,8 @@ public class Livro {
     @JoinColumn(name = "autor_id")
     private Autor autor;
 
+    private boolean ativo;
+
     public Livro (DadosCadastroLivro dados, Autor autor, Categoria categoria) {
         this.titulo = dados.titulo();
         this.preco = dados.preco();
@@ -46,6 +48,7 @@ public class Livro {
         this.qtdEmEstoque = dados.qtdEmEstoque();
         this.autor = autor;
         this.categoria = categoria;
+        this.ativo = true;
     }
 
     @Override

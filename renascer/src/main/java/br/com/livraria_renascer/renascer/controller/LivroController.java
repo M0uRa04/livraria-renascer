@@ -40,16 +40,16 @@ public class LivroController {
         var livro = service.atualiza(dados);
         return ResponseEntity.ok(livro);
     }
-//
-//    @DeleteMapping ("/{id}")
-//    @Transactional
-//    public ResponseEntity inativaAutor (@PathVariable Long id) {
-//        var autor = repository.getReferenceById(id);
-//        service.inativa(autor);
-//        repository.save(autor);
-//        return ResponseEntity.noContent().build();
-//    }
-//
+
+    @DeleteMapping ("/{id}")
+    @Transactional
+    public ResponseEntity inativaLivro (@PathVariable Long id) {
+        var livro = repository.getReferenceById(id);
+        service.inativa(livro);
+        repository.save(livro);
+        return ResponseEntity.noContent().build();
+    }
+
     @GetMapping ("/{id}")
     public ResponseEntity buscaLivroPorId (@PathVariable Long id) {
         var livro = repository.findById(id);
