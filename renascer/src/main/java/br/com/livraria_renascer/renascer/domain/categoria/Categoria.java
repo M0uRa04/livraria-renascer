@@ -30,7 +30,11 @@ public class Categoria {
 
     private boolean ativo;
 
-    public Categoria (){
+    public Categoria (){};
+
+    public Categoria (DadosCadastroCategoria dados){
+        this.nome = dados.nome();
+        this.descricao = dados.descricao();
         this.ativo = true;
     };
 
