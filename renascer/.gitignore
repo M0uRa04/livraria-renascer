@@ -32,5 +32,8 @@ build/
 ### VS Code ###
 .vscode/
 
-#Scrip para rodar no H2
+#Script para rodar no H2
 renascer/src/main/resources/data.sql
+
+#Script para gerar senhas compativeis com o token JWT.
+renascer/src/main/java/br/com/livraria_renascer/renascer/infra/security/GeradorDeSenhasTemporario.java
