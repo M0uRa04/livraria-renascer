@@ -4,6 +4,7 @@ import br.com.livraria_renascer.renascer.domain.livro.DadosAtualizacaoLivro;
 import br.com.livraria_renascer.renascer.domain.livro.DadosCadastroLivro;
 import br.com.livraria_renascer.renascer.domain.livro.LivroRepository;
 import br.com.livraria_renascer.renascer.domain.livro.LivroService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @RequestMapping("/livro")
+@SecurityRequirement(name = "bearer-key")
 public class LivroController {
 
     @Autowired

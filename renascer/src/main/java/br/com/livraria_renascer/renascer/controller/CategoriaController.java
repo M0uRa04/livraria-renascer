@@ -4,6 +4,7 @@ import br.com.livraria_renascer.renascer.domain.categoria.CategoriaRepository;
 import br.com.livraria_renascer.renascer.domain.categoria.CategoriaService;
 import br.com.livraria_renascer.renascer.domain.categoria.DadosAtualizacaoCategoria;
 import br.com.livraria_renascer.renascer.domain.categoria.DadosCadastroCategoria;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @RequestMapping("/categoria")
+@SecurityRequirement(name = "bearer-key")
 public class CategoriaController {
 
     @Autowired

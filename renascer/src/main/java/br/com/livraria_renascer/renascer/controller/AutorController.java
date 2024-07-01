@@ -1,6 +1,7 @@
 package br.com.livraria_renascer.renascer.controller;
 
 import br.com.livraria_renascer.renascer.domain.autor.*;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/autor")
+@SecurityRequirement(name = "bearer-key")
 public class AutorController {
 
     @Autowired
